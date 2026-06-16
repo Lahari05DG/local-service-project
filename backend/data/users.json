@@ -2,15 +2,29 @@
   {
     "name": "Lahari Mallidi",
     "phone": "9390632322",
-    "password": "Ammu3824",
+    "password": "$2b$10$YCY0inN0zi.ocHZBHbpTJuG6l8ssdkXcUhYH4aBEqcrDQDTZrzFvu",
     "role": "owner",
     "location": "medchal"
   },
   {
-    "name": "Surya",
-    "phone": "6281179541",
-    "password": "Surya123",
+    "name": "siri",
+    "phone": "9328701232",
+    "password": "$2b$10$SN2Vz0kz1zF6leHg.iydnez/Je9E7VBmlOE1rNxjZ8MpsRId04yA2",
     "role": "worker",
-    "location": "Indore"
+    "location": "kompally"
+  },
+  {
+    "name": "Jahnavi",
+    "phone": "9110558630",
+    "password": "$2b$10$orLamxHfWErBzo60I3Dy.ewB2BZ1FPJtVwwhVj9AEa1Kvz8riIw9G",
+    "role": "owner",
+    "location": "secunderabad"
+  },
+  {
+    "name": "swetha",
+    "phone": "9347537421",
+    "password": "$2b$10$wf8wjijkdZrgmlhyv6L3a.Sp2oG8026iRt.Tf8KbafeUyw4IS4ov2",
+    "role": "worker",
+    "location": "medchal"
   }
 ]

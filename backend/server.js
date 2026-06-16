@@ -1,164 +1,132 @@
-const cors = require("cors");
 const express = require("express");
-const fs = require("fs");
+const cors = require("cors");
 const path = require("path");
+const http = require("http");
+const { Server } = require("socket.io");
+const jwt = require("jsonwebtoken");
+const fs = require("fs");
+
+const { JWT_SECRET } = require("./middleware/auth");
 
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server, { cors: { origin: "*" } });
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Path to users.json
+// Make io accessible from routes
+app.set("io", io);
+
+// Serve frontend static files
+app.use(express.static(path.join(__dirname, "..", "public")));
+
+// API Routes
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/services", require("./routes/services"));
+app.use("/api/proposals", require("./routes/proposals"));
+app.use("/api/stats", require("./routes/stats"));
+app.use("/api/messages", require("./routes/messages"));
+
+// ── Socket.IO Authentication ──
+io.use((socket, next) => {
+  const token = socket.handshake.auth.token;
+  if (!token) return next(new Error("Authentication required"));
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    socket.user = decoded;
+    next();
+  } catch (err) {
+    next(new Error("Invalid token"));
+  }
+});
+
+// ── Socket.IO Events ──
+const messagesFilePath = path.join(__dirname, "data", "messages.json");
 const usersFilePath = path.join(__dirname, "data", "users.json");
 
-// Register API
-app.post("/register", (req, res) => {
-    const { name, phone, password, role, location } = req.body;
+function readJSON(filePath) {
+  try { return JSON.parse(fs.readFileSync(filePath, "utf-8")); }
+  catch { return []; }
+}
+function writeJSON(filePath, data) {
+  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+}
 
-    // Read existing users
-    const usersData = fs.readFileSync(usersFilePath);
-    const users = JSON.parse(usersData);
+io.on("connection", (socket) => {
+  // Join personal room (identified by phone number)
+  socket.join(socket.user.phone);
+  console.log(`🟢 ${socket.user.name} (${socket.user.phone}) connected`);
 
-    // Check if user already exists
-    const userExists = users.find(user => user.phone === phone);
-    if (userExists) {
-        return res.send("User already exists");
-    }
+  // Handle sending messages
+  socket.on("send_message", (data) => {
+    const { to, message } = data;
+    if (!to || !message) return;
 
-    // Create new user
-    const newUser = {
-        name,
-        phone,
-        password,
-        role,
-        location
+    const users = readJSON(usersFilePath);
+    const sender = users.find((u) => u.phone === socket.user.phone);
+
+    const newMsg = {
+      id: Date.now(),
+      from: socket.user.phone,
+      fromName: sender ? sender.name : socket.user.name,
+      to,
+      message: message.trim(),
+      timestamp: new Date().toISOString(),
+      read: false,
     };
 
-    users.push(newUser);
+    // Save to file
+    const messages = readJSON(messagesFilePath);
+    messages.push(newMsg);
+    writeJSON(messagesFilePath, messages);
 
-    // Save back to file
-    fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
+    // Send to recipient
+    io.to(to).emit("new_message", newMsg);
+    // Confirm to sender
+    socket.emit("message_sent", newMsg);
+  });
 
-    res.send("Registration successful");
-});
-// Login API
-app.post("/login", (req, res) => {
-    const { phone, password } = req.body;
+  // Typing indicator
+  socket.on("typing", (data) => {
+    io.to(data.to).emit("user_typing", {
+      from: socket.user.phone,
+      name: socket.user.name,
+    });
+  });
 
-    // Read users
-    const usersData = fs.readFileSync(usersFilePath);
-    const users = JSON.parse(usersData);
+  socket.on("stop_typing", (data) => {
+    io.to(data.to).emit("user_stop_typing", { from: socket.user.phone });
+  });
 
-    // Find user
-    const user = users.find(
-        u => u.phone === phone && u.password === password
-    );
-
-    if (!user) {
-        return res.send("Invalid phone number or password");
+  // Mark messages as read
+  socket.on("mark_read", (data) => {
+    const messages = readJSON(messagesFilePath);
+    let updated = false;
+    messages.forEach((m) => {
+      if (m.from === data.from && m.to === socket.user.phone && !m.read) {
+        m.read = true;
+        updated = true;
+      }
+    });
+    if (updated) {
+      writeJSON(messagesFilePath, messages);
+      io.to(data.from).emit("messages_read", { by: socket.user.phone });
     }
+  });
 
-    // Role-based redirect
-    if (user.role === "owner") {
-        res.redirect("http://localhost:5500/owner_dashboard.html");
-    } else if (user.role === "worker") {
-        res.redirect("http://localhost:5500/worker_dashboard.html");
-    } else {
-        res.send("Role not found");
-    }
+  socket.on("disconnect", () => {
+    console.log(`🔴 ${socket.user.name} disconnected`);
+  });
 });
 
-const servicesFilePath = path.join(__dirname, "data", "services.json");
-
-// Add Service API (Owner)
-app.post("/add-service", (req, res) => {
-    const {serviceId, serviceName, description, cost, location, ownerPhone } = req.body;
-
-    const servicesData = fs.readFileSync(servicesFilePath);
-    const services = JSON.parse(servicesData);
-
-    const newService = {
-        serviceId:Date.now(),
-        serviceName,
-        description,
-        cost,
-        location,
-        ownerPhone
-    };
-
-    services.push(newService);
-
-    fs.writeFileSync(servicesFilePath, JSON.stringify(services, null, 2));
-
-    res.send("Service added successfully");
-});
-// Get all services (Worker)
-app.get("/services", (req, res) => {
-    const servicesData = fs.readFileSync(servicesFilePath);
-    const services = JSON.parse(servicesData);
-    res.json(services);
-});
-const proposalsFilePath = path.join(__dirname, "data", "proposals.json");
-
-// Worker sends proposal
-app.post("/add-proposal", (req, res) => {
-  const { serviceId, serviceName, ownerPhone, workerPhone, proposedCost } = req.body;
-
-  const proposals = JSON.parse(fs.readFileSync(proposalsFilePath));
-
-  // ✅ NEW CHECK: allow only one proposal per service per worker
-  const alreadyProposed = proposals.find(
-    p => p.serviceId === serviceId && p.workerPhone === workerPhone
-  );
-
-  if (alreadyProposed) {
-    return res.send("You have already proposed for this service");
-  }
-
-  const newProposal = {
-    serviceId,
-    serviceName,
-    ownerPhone,
-    workerPhone,
-    proposedCost,
-    status: "pending"
-  };
-
-  proposals.push(newProposal);
-  fs.writeFileSync(proposalsFilePath, JSON.stringify(proposals, null, 2));
-
-  res.send("Proposal sent successfully");
-});
-// Get proposals (Owner)
-app.get("/proposals", (req, res) => {
-  const proposals = JSON.parse(fs.readFileSync(proposalsFilePath));
-  res.json(proposals);
+// Catch-all: serve index.html for any non-API route
+app.get("/{*splat}", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "public", "index.html"));
 });
 
-// Update proposal status
-app.post("/update-proposal", (req, res) => {
-  const { serviceId, status } = req.body;
-
-  const proposals = JSON.parse(fs.readFileSync(proposalsFilePath));
-
-  const proposal = proposals.find(p => p.serviceId === serviceId);
-
-  if (!proposal) {
-    return res.send("Proposal not found");
-  }
-
-  proposal.status = status;
-
-  fs.writeFileSync(proposalsFilePath, JSON.stringify(proposals, null, 2));
-  res.send("Proposal " + status);
-});
-
-
-// Test route
-app.get("/", (req, res) => {
-    res.send("Backend server is running!");
-});
-
-app.listen(3000, () => {
-    console.log("Server started on port 3000");
+const PORT = 3000;
+server.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
 });

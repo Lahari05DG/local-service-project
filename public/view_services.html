@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Services — LocalServ</title>
+  <meta name="description" content="Manage your services and review worker proposals on LocalServ." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="page-wrapper">
+    <nav class="navbar solid" id="main-navbar"></nav>
+
+    <main class="page-content">
+      <div class="container">
+        <div class="section-header" style="margin-bottom:28px;">
+          <h2>My Services & Proposals</h2>
+          <a href="/add_service.html" class="btn btn-primary btn-sm" id="add-service-link">
+            <span class="material-icons-outlined">add</span> Add Service
+          </a>
+        </div>
+
+        <div id="services-container">
+          <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p style="color:var(--text-secondary);font-size:0.9rem;">Loading your services…</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/view_services.js"></script>
+</body>
+</html>

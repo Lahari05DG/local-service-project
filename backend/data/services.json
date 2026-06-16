@@ -32,14 +32,6 @@
     "ownerPhone": "9390632322"
   },
   {
-    "serviceId": 1771337026769,
-    "serviceName": "washroom cleaning",
-    "description": "cleaning",
-    "cost": "500",
-    "location": "secunderabad",
-    "ownerPhone": "9390632322"
-  },
-  {
     "serviceId": 1771337030424,
     "serviceName": "washroom cleaning",
     "description": "cleaning",
@@ -70,5 +62,17 @@
     "cost": "354",
     "location": "qefa",
     "ownerPhone": "9390632322"
+  },
+  {
+    "serviceId": 1781604020355,
+    "serviceName": "chef",
+    "description": "I need a chef to cook",
+    "cost": 1500,
+    "location": "secunderabad",
+    "category": "other",
+    "ownerPhone": "9110558630",
+    "ownerName": "Jahnavi",
+    "status": "open",
+    "createdAt": "2026-06-16T10:00:20.355Z"
   }
 ]

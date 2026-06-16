@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat — LocalServ</title>
+  <meta name="description" content="Chat with service owners and workers on LocalServ." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="page-wrapper">
+    <nav class="navbar solid" id="main-navbar"></nav>
+
+    <main class="chat-container">
+      <!-- Conversation List (Left Panel) -->
+      <aside class="chat-sidebar" id="chat-sidebar">
+        <div class="chat-sidebar-header">
+          <h3>Messages</h3>
+          <span class="badge badge-primary" id="total-unread" style="display:none;">0</span>
+        </div>
+        <div class="chat-search">
+          <input type="text" class="form-input" id="conv-search" placeholder="🔍 Search conversations..." />
+        </div>
+        <div class="conversation-list" id="conversation-list">
+          <div class="loading-spinner">
+            <div class="spinner"></div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Chat Area (Right Panel) -->
+      <section class="chat-main" id="chat-main">
+        <!-- Empty state -->
+        <div class="chat-empty" id="chat-empty">
+          <div class="chat-empty-icon">💬</div>
+          <h3>Select a conversation</h3>
+          <p>Choose a conversation from the left panel or start chatting from a service page</p>
+        </div>
+
+        <!-- Active chat (hidden initially) -->
+        <div class="chat-active" id="chat-active" style="display:none;">
+          <!-- Chat Header -->
+          <div class="chat-header" id="chat-header">
+            <button class="btn-icon chat-back-btn" id="chat-back-btn" onclick="showSidebar()">
+              <span class="material-icons-outlined">arrow_back</span>
+            </button>
+            <div class="chat-user-info">
+              <div class="chat-avatar" id="chat-avatar">?</div>
+              <div>
+                <h4 id="chat-user-name">Loading…</h4>
+                <span class="chat-status" id="chat-status"></span>
+              </div>
+            </div>
+            <div class="chat-header-actions">
+              <a class="btn btn-success btn-sm btn-icon" id="chat-call-btn" href="tel:" title="Call">
+                <span class="material-icons-outlined">call</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Messages -->
+          <div class="chat-messages" id="chat-messages">
+            <div class="loading-spinner">
+              <div class="spinner"></div>
+            </div>
+          </div>
+
+          <!-- Typing indicator -->
+          <div class="typing-indicator" id="typing-indicator" style="display:none;">
+            <span></span><span></span><span></span>
+            <span class="typing-text" id="typing-text">typing…</span>
+          </div>
+
+          <!-- Message Input -->
+          <div class="chat-input-bar">
+            <input type="text" class="form-input" id="message-input" placeholder="Type a message…" autocomplete="off" />
+            <button class="btn btn-primary btn-icon" id="send-btn" onclick="sendMessage()">
+              <span class="material-icons-outlined">send</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/chat.js"></script>
+</body>
+</html>

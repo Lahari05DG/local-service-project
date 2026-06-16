@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LocalServ — Find Trusted Local Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar transparent" id="landing-navbar">
+    <div class="container">
+      <a href="/" class="navbar-brand">
+        <span class="brand-icon">🏠</span>
+        LocalServ
+      </a>
+      <div class="navbar-links" id="nav-links"></div>
+      <button class="navbar-toggle" id="nav-toggle" onclick="document.getElementById('nav-links').classList.toggle('active')">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-decoration d1"></div>
+    <div class="hero-decoration d2"></div>
+    <div class="hero-decoration d3"></div>
+    <div class="hero-content">
+      <h1>Find Trusted Local Services</h1>
+      <p>Connect with skilled professionals in your area. Post a job or find work — all in one place.</p>
+      <div class="hero-buttons" id="hero-buttons">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section" id="how-it-works" style="background:#fff;">
+    <div class="container">
+      <div class="section-title">
+        <h2>How It Works</h2>
+        <p>Get your services done in three simple steps</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="step-card">
+          <div class="step-icon"><span>📋</span></div>
+          <h3>Post a Service</h3>
+          <p>Describe what you need and set your budget. Workers in your area will see your request.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-icon"><span>💼</span></div>
+          <h3>Get Proposals</h3>
+          <p>Skilled workers send competitive proposals. Compare costs and choose the best fit.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-icon"><span>✅</span></div>
+          <h3>Get It Done</h3>
+          <p>Accept a proposal and get your service completed. Simple, fast, reliable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-section" id="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-block">
+          <h3>500+</h3>
+          <p>Services Posted</p>
+        </div>
+        <div class="stat-block">
+          <h3>200+</h3>
+          <p>Active Workers</p>
+        </div>
+        <div class="stat-block">
+          <h3>50+</h3>
+          <p>Locations Covered</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 LocalServ. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/login.html">Login</a>
+        <a href="/register.html">Register</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/landing.js"></script>
+</body>
+</html>

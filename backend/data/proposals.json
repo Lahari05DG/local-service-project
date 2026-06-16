@@ -29,7 +29,7 @@
     "ownerPhone": "9390632322",
     "workerPhone": "8888888888",
     "proposedCost": "500",
-    "status": "pending"
+    "status": "rejected"
   },
   {
     "serviceId": 1771338199250,
@@ -38,5 +38,45 @@
     "workerPhone": "8888888888",
     "proposedCost": "354",
     "status": "accepted"
+  },
+  {
+    "serviceId": 1771338199250,
+    "serviceName": "Electrician",
+    "ownerPhone": "9390632322",
+    "workerPhone": "9328701232",
+    "workerName": "siri",
+    "proposedCost": 354,
+    "status": "accepted",
+    "createdAt": "2026-06-16T09:46:33.837Z"
+  },
+  {
+    "serviceId": 1771337440566,
+    "serviceName": "floor cleaning",
+    "ownerPhone": "9390632322",
+    "workerPhone": "9328701232",
+    "workerName": "siri",
+    "proposedCost": 600,
+    "status": "rejected",
+    "createdAt": "2026-06-16T09:46:48.415Z"
+  },
+  {
+    "serviceId": 1769787571836,
+    "serviceName": "plumber",
+    "ownerPhone": "9390632322",
+    "workerPhone": "9328701232",
+    "workerName": "siri",
+    "proposedCost": 500,
+    "status": "accepted",
+    "createdAt": "2026-06-16T09:58:00.259Z"
+  },
+  {
+    "serviceId": 1781604020355,
+    "serviceName": "chef",
+    "ownerPhone": "9110558630",
+    "workerPhone": "9347537421",
+    "workerName": "swetha",
+    "proposedCost": 1500,
+    "status": "accepted",
+    "createdAt": "2026-06-16T10:01:17.109Z"
   }
 ]
