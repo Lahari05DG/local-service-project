@@ -1,0 +1,74 @@
+[
+  {
+    "serviceId": 1769787544570,
+    "serviceName": "Electrician",
+    "description": "fan repairing",
+    "cost": "400",
+    "location": "Medchal",
+    "ownerPhone": "9390632322"
+  },
+  {
+    "serviceId": 1769787571836,
+    "serviceName": "plumber",
+    "description": "tap repair",
+    "cost": "500",
+    "location": "kandlakoya",
+    "ownerPhone": "9390632322"
+  },
+  {
+    "serviceId": 1769788163952,
+    "serviceName": "watchman",
+    "description": "gate keeper",
+    "cost": "2000",
+    "location": "Kandlakoya, Medchal",
+    "ownerPhone": "9390632322"
+  },
+  {
+    "serviceId": 1771336590370,
+    "serviceName": "washroom cleaning",
+    "description": "cleaning",
+    "cost": "500",
+    "location": "secunderabad",
+    "ownerPhone": "9390632322"
+  },
+  {
+    "serviceId": 1771337026769,
+    "serviceName": "washroom cleaning",
+    "description": "cleaning",
+    "cost": "500",
+    "location": "secunderabad",
+    "ownerPhone": "9390632322"
+  },
+  {
+    "serviceId": 1771337030424,
+    "serviceName": "washroom cleaning",
+    "description": "cleaning",
+    "cost": "500",
+    "location": "secunderabad",
+    "ownerPhone": "9390632322"
+  },
+  {
+    "serviceId": 1771337058654,
+    "serviceName": "watchman",
+    "description": "abc",
+    "cost": "1900",
+    "location": "aler",
+    "ownerPhone": "9390632322"
+  },
+  {
+    "serviceId": 1771337440566,
+    "serviceName": "floor cleaning",
+    "description": "to clean 4 rooms",
+    "cost": "400",
+    "location": "lb nagar",
+    "ownerPhone": "9390632322"
+  },
+  {
+    "serviceId": 1771338199250,
+    "serviceName": "Electrician",
+    "description": "asc",
+    "cost": "354",
+    "location": "qefa",
+    "ownerPhone": "9390632322"
+  }
+]

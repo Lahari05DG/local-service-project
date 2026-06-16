@@ -1,0 +1,148 @@
+/* ===== GLOBAL ===== */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== NAV BAR ===== */
+.nav {
+    background: #007bff;
+    padding: 12px;
+    text-align: center;
+}
+
+.nav a {
+    color: white;
+    margin: 0 15px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+/* ===== HEADINGS ===== */
+h1, h2, h3 {
+    text-align: center;
+    color: #333;
+}
+
+.page-title {
+    margin-top: 30px;
+}
+
+/* ===== LINKS ===== */
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    background: white;
+    padding: 25px;
+    margin: 30px auto;
+    width: 420px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ===== FORMS ===== */
+form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],input[type="password"] textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border: 2px solid #007bff;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 4px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* ===== SERVICE CARD ===== */
+.service-card {
+    background: white;
+    padding: 18px;
+    margin: 20px auto;
+    width: 460px;
+    border-left: 5px solid #007bff;
+    border-radius: 6px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.service-card p {
+    margin: 6px 0;
+}
+
+/* ===== CENTER TEXT ===== */
+.center {
+    text-align: center;
+}
+.card {
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.proposal {
+  border-top: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+button {
+  margin-right: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:first-of-type {
+  background-color: #28a745;
+  color: white;
+}
+
+button:last-of-type {
+  background-color: #dc3545;
+  color: white;
+}

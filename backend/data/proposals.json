@@ -1,0 +1,42 @@
+[
+  {
+    "serviceId": 1769787544570,
+    "serviceName": "Electrician",
+    "ownerPhone": "9390632322",
+    "workerPhone": "8888888888",
+    "proposedCost": "500",
+    "status": "accepted"
+  },
+  {
+    "serviceId": 1769787571836,
+    "serviceName": "plumber",
+    "ownerPhone": "9390632322",
+    "workerPhone": "8888888888",
+    "proposedCost": "600",
+    "status": "rejected"
+  },
+  {
+    "serviceId": 1769788163952,
+    "serviceName": "watchman",
+    "ownerPhone": "9390632322",
+    "workerPhone": "8888888888",
+    "proposedCost": "2200",
+    "status": "accepted"
+  },
+  {
+    "serviceId": 1771336590370,
+    "serviceName": "washroom cleaning",
+    "ownerPhone": "9390632322",
+    "workerPhone": "8888888888",
+    "proposedCost": "500",
+    "status": "pending"
+  },
+  {
+    "serviceId": 1771338199250,
+    "serviceName": "Electrician",
+    "ownerPhone": "9390632322",
+    "workerPhone": "8888888888",
+    "proposedCost": "354",
+    "status": "accepted"
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Lahari Mallidi",
+    "phone": "9390632322",
+    "password": "Ammu3824",
+    "role": "owner",
+    "location": "medchal"
+  },
+  {
+    "name": "Surya",
+    "phone": "6281179541",
+    "password": "Surya123",
+    "role": "worker",
+    "location": "Indore"
+  }
+]

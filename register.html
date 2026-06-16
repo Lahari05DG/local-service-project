@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="nav">
+    <a href="index.html">Home</a>
+</div>
+
+<h2 class="page-title">Register</h2>
+
+<form class="container" method="POST" action="http://localhost:3000/register">
+    <label>Name</label>
+    <input type="text" name="name">
+
+    <label>Phone Number</label>
+    <input type="text" name="phone">
+
+    <label>Password</label>
+
+    <input type="password" name="password">
+    <div>
+        <label>Role</label><br/>
+        <label for="role"><input type="radio" name="role">Owner</label><br>
+        <label for="role"><input type="radio" name="role">Worker</label>
+    </div>
+
+    <label>Location</label>
+    <input type="text" name="location">
+
+    <button class="btn">Register</button>
+
+    <p class="center">
+        Already have an account? <a href="login.html">Login</a>
+    </p>
+</form>
+
+</body>
+</html>

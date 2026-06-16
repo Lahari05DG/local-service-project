@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Service</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="nav">
+    <a href="owner_dashboard.html">Dashboard</a>
+    <a href="index.html">Logout</a>
+</div>
+
+<h2 class="page-title">Add Service Request</h2>
+
+<form class="container" id="serviceForm">
+
+    <label>Service Name</label>
+    <input type="text" id="serviceName" name="serviceName">
+
+    <label>Description</label>
+    <textarea id="description" name="description"></textarea>
+
+    <label>Expected Cost</label>
+    <input type="number" id="cost" name="cost">
+
+    <label>Location</label>
+    <input type="text" id="location" name="location">
+
+    <input type="hidden" name="ownerPhone" value="9390632322">
+
+    <button type="submit" class="btn">Post Service</button>
+
+</form>
+
+<script>
+document.getElementById("serviceForm").addEventListener("submit", function(e) {
+    console.log("Form submitted");
+
+  e.preventDefault();   // stops page reload
+
+  const serviceName = document.getElementById("serviceName").value;
+  const description = document.getElementById("description").value;
+  const cost = document.getElementById("cost").value;
+  const location = document.getElementById("location").value;
+
+  fetch("http://localhost:3000/add-service", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      serviceName,
+      description,
+      cost,
+      location,
+      ownerPhone: "9390632322"
+    })
+  })
+  .then(res => res.text())
+  .then(msg => {
+    alert(msg);
+    document.getElementById("serviceForm").reset();
+  });
+
+});
+</script>
+
+</body>
+
+</html>
